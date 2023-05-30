@@ -1,4 +1,5 @@
 ﻿using Application.Abstractions;
+using Application.Exercises.Dtos;
 using Domain.Models;
 
 namespace Application.Exercises
@@ -12,8 +13,18 @@ namespace Application.Exercises
             _exerciseRepository = exerciseRepository;
         }
 
-        public async Task<Exercise> CreateExercise(Exercise exercise)
+        public async Task<Exercise> CreateExercise(ExerciseDto exerciseDto)
         {
+            var exerciseBuilder = new ExerciseBuilder();
+
+            Exercise exercise = exerciseBuilder
+                .Name(exerciseDto.Name)
+                .Description(exerciseDto.Description)
+                .StartDoingHour(exerciseDto.StartDoingHour)
+                .StartDoingMinutes(exerciseDto.StartDoingMinutes)
+                .DurationInSeconds(exerciseDto.DurationInSeconds)
+                .Build();
+
             return await _exerciseRepository.CreateExerciseAsync(exercise);
         }
 

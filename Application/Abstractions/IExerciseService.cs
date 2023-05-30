@@ -1,4 +1,5 @@
-﻿using Domain.Models;
+﻿using Application.Exercises.Dtos;
+using Domain.Models;
 
 namespace Application.Abstractions
 {
@@ -8,7 +9,7 @@ namespace Application.Abstractions
 
         Task<Exercise> GetExerciseById(int exerciseId);
 
-        Task<Exercise> CreateExercise(Exercise exercise);
+        Task<Exercise> CreateExercise(ExerciseDto exercise);
 
         Task DeleteExercise(int exerciseId);
     }

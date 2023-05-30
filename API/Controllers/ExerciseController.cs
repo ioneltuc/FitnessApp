@@ -1,4 +1,5 @@
 ﻿using Application.Abstractions;
+using Application.Exercises.Dtos;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,9 +29,9 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<Exercise> CreateExercise(Exercise exercise)
+        public async Task<Exercise> CreateExercise(ExerciseDto exerciseDto)
         {
-            return await _exerciseService.CreateExercise(exercise);
+            return await _exerciseService.CreateExercise(exerciseDto);
         }
 
         [HttpDelete("{id}")]

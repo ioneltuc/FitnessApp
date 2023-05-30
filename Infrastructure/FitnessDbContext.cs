@@ -8,7 +8,7 @@ namespace Infrastructure
         public FitnessDbContext(DbContextOptions options) : base(options)
         {
         }
-        
+
         public DbSet<Exercise> Exercises { get; set; }
     }
 }
