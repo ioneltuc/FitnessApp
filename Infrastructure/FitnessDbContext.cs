@@ -1,4 +1,5 @@
-﻿using Domain.Models;
+﻿using Application.Exercises.ConcreteSubscribers;
+using Domain.Models;
 using Domain.Models.Meals;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,7 @@ namespace Infrastructure
         public DbSet<Breakfast> Breakfasts { get; set; }
         public DbSet<Lunch> Lunches { get; set; }
         public DbSet<Dinner> Dinners { get; set; }
+        public DbSet<MailMessage> EmailsToNotify { get; set; }
 
         public FitnessDbContext(DbContextOptions options) : base(options)
         {

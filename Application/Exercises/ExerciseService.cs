@@ -1,4 +1,5 @@
 ﻿using Application.Abstractions;
+using Application.Exercises.ConcreteSubscribers;
 using Application.Exercises.Dtos;
 using Domain.Models;
 
@@ -7,10 +8,14 @@ namespace Application.Exercises
     public class ExerciseService : IExerciseService
     {
         private readonly IExerciseRepository _exerciseRepository;
+        private readonly IEmailRepository _emailRepository;
+        private List<ISubscriber> _subscribers;
 
-        public ExerciseService(IExerciseRepository exerciseRepository)
+        public ExerciseService(IExerciseRepository exerciseRepository, IEmailRepository emailRepository)
         {
             _exerciseRepository = exerciseRepository;
+            _emailRepository = emailRepository;
+            _subscribers = new List<ISubscriber>();
         }
 
         public async Task<Exercise> CreateExercise(ExerciseDto exerciseDto)
@@ -24,6 +29,8 @@ namespace Application.Exercises
                 .StartDoingMinutes(exerciseDto.StartDoingMinutes)
                 .DurationInSeconds(exerciseDto.DurationInSeconds)
                 .Build();
+
+            NotifySubscribers(exerciseDto);
 
             return await _exerciseRepository.CreateExerciseAsync(exercise);
         }
@@ -41,6 +48,37 @@ namespace Application.Exercises
         public async Task<Exercise> GetExerciseById(int exerciseId)
         {
             return await _exerciseRepository.GetExerciseByIdAsync(exerciseId);
+        }
+
+        public async Task Subscribe(ISubscriber subscriber)
+        {
+            if (subscriber is MailMessage)
+            {
+                await _emailRepository.AddEmailAsync((MailMessage)subscriber);
+            }
+        }
+
+        public async Task Unsubscribe(ISubscriber subscriber)
+        {
+            if (subscriber is MailMessage)
+            {
+                await _emailRepository.RemoveEmailAsync((MailMessage)subscriber);
+            }
+        }
+
+        private async void NotifySubscribers(ExerciseDto exerciseDto)
+        {
+            ISubscriber email = _emailRepository.GetEmail();
+
+            if (email != null)
+            {
+                _subscribers.Add(email);
+            }
+
+            foreach (var subscriber in _subscribers)
+            {
+                subscriber.Update(exerciseDto);
+            }
         }
     }
 }

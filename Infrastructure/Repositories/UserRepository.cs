@@ -39,5 +39,12 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
             return user;
         }
+
+        public string GetUserEmail()
+        {
+            var user = _context.Users.FirstOrDefault();
+            var email = user.Email;
+            return email;
+        }
     }
 }
