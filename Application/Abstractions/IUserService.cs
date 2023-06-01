@@ -6,5 +6,9 @@ namespace Application.Abstractions
     public interface IUserService
     {
         Task<User> PatchUser(UserDto userToUpdate);
+
+        Task<User> GetUser();
+
+        string GetUserEmail();
     }
 }

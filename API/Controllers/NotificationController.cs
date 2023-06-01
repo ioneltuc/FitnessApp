@@ -9,14 +9,14 @@ namespace API.Controllers
     public class NotificationController : ControllerBase
     {
         private readonly IExerciseService _exerciseService;
-        private readonly IUserRepository _userRepository;
+        private readonly IUserService _userService;
         private readonly MailMessage _mailMessage;
 
-        public NotificationController(IExerciseService exerciseService, IUserRepository userRepository)
+        public NotificationController(IExerciseService exerciseService, IUserService userService)
         {
             _exerciseService = exerciseService;
-            _userRepository = userRepository;
-            _mailMessage = new MailMessage(_userRepository.GetUserEmail());
+            _userService = userService;
+            _mailMessage = new MailMessage(_userService.GetUserEmail());
         }
 
         [HttpPost("email")]

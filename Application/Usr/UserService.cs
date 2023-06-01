@@ -13,6 +13,16 @@ namespace Application.Usr
             _userRepository = userRepository;
         }
 
+        public async Task<User> GetUser()
+        {
+            return await _userRepository.GetUserAsync();
+        }
+
+        public string GetUserEmail()
+        {
+            return _userRepository.GetUserEmail();
+        }
+
         public async Task<User> PatchUser(UserDto userToUpdate)
         {
             return await _userRepository.UpdateUserPatchAsync(userToUpdate);

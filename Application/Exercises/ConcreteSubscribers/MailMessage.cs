@@ -41,7 +41,7 @@ namespace Application.Exercises.ConcreteSubscribers
                 using (var smtp = new SmtpClient())
                 {
                     smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
-                    smtp.Authenticate("iontuc21@gmail.com", "efvuuddmmbohflfn");
+                    smtp.Authenticate("iontuc21@gmail.com", "");
                     await smtp.SendAsync(email);
                     smtp.Disconnect(true);
                 }

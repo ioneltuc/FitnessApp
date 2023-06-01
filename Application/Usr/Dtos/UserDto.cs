@@ -8,7 +8,7 @@ namespace Application.Usr.Dtos
         public string? Email { get; set; }
         public int? Age { get; set; }
         public Gender? Gender { get; set; }
-        public int? Weight { get; set; }
-        public int? Height { get; set; }
+        public double? Weight { get; set; }
+        public double? Height { get; set; }
     }
 }

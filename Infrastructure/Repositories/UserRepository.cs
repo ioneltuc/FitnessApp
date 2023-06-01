@@ -31,13 +31,18 @@ namespace Infrastructure.Repositories
                 user.Gender = (Domain.Enums.Gender)userToUpdate.Gender;
 
             if (userToUpdate.Height != null)
-                user.Height = (int)userToUpdate.Height;
+                user.Height = (double)userToUpdate.Height;
 
             if (userToUpdate.Weight != null)
-                user.Weight = (int)userToUpdate.Weight;
+                user.Weight = (double)userToUpdate.Weight;
 
             await _context.SaveChangesAsync();
             return user;
+        }
+
+        public async Task<User> GetUserAsync()
+        {
+            return await _context.Users.FirstOrDefaultAsync();
         }
 
         public string GetUserEmail()

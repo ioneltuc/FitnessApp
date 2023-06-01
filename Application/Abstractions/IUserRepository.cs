@@ -7,6 +7,8 @@ namespace Application.Abstractions
     {
         Task<User> UpdateUserPatchAsync(UserDto userToUpdate);
 
+        Task<User> GetUserAsync();
+
         string GetUserEmail();
     }
 }
