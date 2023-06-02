@@ -1,4 +1,5 @@
-﻿using Application.Meals.Dtos;
+﻿using Application.Meals;
+using Application.Meals.Dtos;
 using Domain.Abstractions;
 using Domain.Enums;
 using Domain.Models.Meals;
@@ -14,5 +15,9 @@ namespace Application.Abstractions
         Task<ICollection<Meal>> GetMeals();
 
         Task<IMeal> GetMeal(int mealId);
+
+        void SetSortStrategy(ISortStrategy sortStrategy);
+
+        Task<ICollection<Meal>> GetMealsSorted();
     }
 }

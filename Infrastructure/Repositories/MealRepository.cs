@@ -70,5 +70,25 @@ namespace Infrastructure.Repositories
 
             return null;
         }
+
+        public async Task<ICollection<Meal>> GetAllMealsOrderedByNameAsync()
+        {
+            return await _context.Meals.OrderBy(m => m.Name).ToListAsync();
+        }
+
+        public async Task<ICollection<Meal>> GetAllMealsOrderedByNameDescAsync()
+        {
+            return await _context.Meals.OrderByDescending(m => m.Name).ToListAsync();
+        }
+
+        public async Task<ICollection<Meal>> GetAllMealsOrderedByCaloriesAsync()
+        {
+            return await _context.Meals.OrderBy(m => m.Calories).ToListAsync();
+        }
+
+        public async Task<ICollection<Meal>> GetAllMealsOrderedByCaloriesDescAsync()
+        {
+            return await _context.Meals.OrderByDescending(m => m.Calories).ToListAsync();
+        }
     }
 }

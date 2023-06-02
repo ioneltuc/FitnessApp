@@ -12,5 +12,13 @@ namespace Application.Abstractions
         Task<ICollection<Meal>> GetAllMealsAsync();
 
         Task<IMeal> GetMealByIdAsync(int mealId);
+
+        Task<ICollection<Meal>> GetAllMealsOrderedByNameAsync();
+
+        Task<ICollection<Meal>> GetAllMealsOrderedByNameDescAsync();
+
+        Task<ICollection<Meal>> GetAllMealsOrderedByCaloriesAsync();
+
+        Task<ICollection<Meal>> GetAllMealsOrderedByCaloriesDescAsync();
     }
 }

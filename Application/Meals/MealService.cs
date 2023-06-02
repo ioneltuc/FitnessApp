@@ -9,6 +9,7 @@ namespace Application.Meals
     public class MealService : IMealService
     {
         private readonly IMealRepository _mealRepository;
+        private ISortStrategy _sortStrategy;
 
         public MealService(IMealRepository mealRepository)
         {
@@ -37,6 +38,16 @@ namespace Application.Meals
         public async Task<IMeal> GetMeal(int mealId)
         {
             return await _mealRepository.GetMealByIdAsync(mealId);
+        }
+
+        public void SetSortStrategy(ISortStrategy sortStrategy)
+        {
+            _sortStrategy = sortStrategy;
+        }
+
+        public async Task<ICollection<Meal>> GetMealsSorted()
+        {
+            return await _sortStrategy.GetMealsSorted();
         }
     }
 }
