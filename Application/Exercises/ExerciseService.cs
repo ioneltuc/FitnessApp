@@ -66,7 +66,7 @@ namespace Application.Exercises
             }
         }
 
-        private async void NotifySubscribers(ExerciseDto exerciseDto)
+        private void NotifySubscribers(ExerciseDto exerciseDto)
         {
             ISubscriber email = _emailRepository.GetEmail();
 
@@ -79,6 +79,11 @@ namespace Application.Exercises
             {
                 subscriber.Update(exerciseDto);
             }
+        }
+
+        public async Task<bool> IsSubscribedToEmailNotifications()
+        {
+            return await _emailRepository.IsSubscribedToEmailNotifications();
         }
     }
 }

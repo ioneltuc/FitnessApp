@@ -9,5 +9,7 @@ namespace Application.Abstractions
         Task RemoveEmailAsync(MailMessage mailMessage);
 
         MailMessage GetEmail();
+
+        Task<bool> IsSubscribedToEmailNotifications();
     }
 }

@@ -17,5 +17,7 @@ namespace Application.Abstractions
         Task Subscribe(ISubscriber subscriber);
 
         Task Unsubscribe(ISubscriber subscriber);
+
+        Task<bool> IsSubscribedToEmailNotifications();
     }
 }

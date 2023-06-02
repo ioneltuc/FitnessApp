@@ -30,5 +30,11 @@ namespace API.Controllers
         {
             await _exerciseService.Unsubscribe(_mailMessage);
         }
+
+        [HttpGet("email")]
+        public async Task<bool> IsSubscribedToEmailNotifications()
+        {
+            return await _exerciseService.IsSubscribedToEmailNotifications();
+        }
     }
 }

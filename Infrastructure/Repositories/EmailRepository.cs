@@ -1,4 +1,5 @@
 ﻿using Application.Abstractions;
+using Application.Exercises;
 using Application.Exercises.ConcreteSubscribers;
 
 namespace Infrastructure.Repositories
@@ -33,6 +34,16 @@ namespace Infrastructure.Repositories
         public MailMessage GetEmail()
         {
             return _context.EmailsToNotify.FirstOrDefault();
+        }
+
+        public async Task<bool> IsSubscribedToEmailNotifications()
+        {
+            if(_context.EmailsToNotify.Count() > 0)
+            {
+                return await Task.FromResult(true);
+            }
+
+            return await Task.FromResult(false);
         }
     }
 }
