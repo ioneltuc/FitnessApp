@@ -10,19 +10,18 @@ namespace Application.Exercises
         private readonly IExerciseRepository _exerciseRepository;
         private readonly IEmailRepository _emailRepository;
         private List<ISubscriber> _subscribers;
-
+        private ExerciseBuilder _exerciseBuilder;
         public ExerciseService(IExerciseRepository exerciseRepository, IEmailRepository emailRepository)
         {
             _exerciseRepository = exerciseRepository;
             _emailRepository = emailRepository;
             _subscribers = new List<ISubscriber>();
+            _exerciseBuilder = new ExerciseBuilder();
         }
 
         public async Task<Exercise> CreateExercise(ExerciseDto exerciseDto)
         {
-            var exerciseBuilder = new ExerciseBuilder();
-
-            Exercise exercise = exerciseBuilder
+            Exercise exercise = _exerciseBuilder
                 .Name(exerciseDto.Name)
                 .Description(exerciseDto.Description)
                 .StartDoingHour(exerciseDto.StartDoingHour)

@@ -10,17 +10,16 @@ namespace Application.Meals
     {
         private readonly IMealRepository _mealRepository;
         private ISortStrategy _sortStrategy;
-
+        private MealFactory _mealFactory;
         public MealService(IMealRepository mealRepository)
         {
             _mealRepository = mealRepository;
+            _mealFactory = new MealFactory();
         }
 
         public async Task<IMeal> CreateMeal(MealType mealType, MealDto mealDto)
         {
-            var mealFactory = new MealFactory();
-
-            IMeal meal = mealFactory.CreateConcreteMeal(mealType, mealDto);
+            IMeal meal = _mealFactory.CreateConcreteMeal(mealType, mealDto);
 
             return await _mealRepository.CreateMealAsync(meal);
         }
