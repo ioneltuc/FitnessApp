@@ -51,6 +51,10 @@ namespace API.Controllers
         {
             switch (sortType)
             {
+                case SortType.None:
+                    _mealService.SetSortStrategy(new DefaultSort(_mealRepository));
+                    break;
+
                 case SortType.ByNameAsc:
                     _mealService.SetSortStrategy(new SortByName(_mealRepository));
                     break;
@@ -68,7 +72,7 @@ namespace API.Controllers
                     break;
 
                 default:
-                    _mealService.SetSortStrategy(new SortByName(_mealRepository));
+                    _mealService.SetSortStrategy(new DefaultSort(_mealRepository));
                     break;
             }
 

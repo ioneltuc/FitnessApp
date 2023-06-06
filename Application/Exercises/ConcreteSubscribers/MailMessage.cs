@@ -19,7 +19,7 @@ namespace Application.Exercises.ConcreteSubscribers
             Email = email;
         }
 
-        public async void Update(ExerciseDto exerciseDto)
+        public async Task Update(ExerciseDto exerciseDto)
         {
             var email = new MimeMessage();
 

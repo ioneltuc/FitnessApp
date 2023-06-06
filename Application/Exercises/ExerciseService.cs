@@ -29,7 +29,7 @@ namespace Application.Exercises
                 .DurationInSeconds(exerciseDto.DurationInSeconds)
                 .Build();
 
-            NotifySubscribers(exerciseDto);
+            await NotifySubscribers(exerciseDto);
 
             return await _exerciseRepository.CreateExerciseAsync(exercise);
         }
@@ -65,7 +65,7 @@ namespace Application.Exercises
             }
         }
 
-        private void NotifySubscribers(ExerciseDto exerciseDto)
+        private async Task NotifySubscribers(ExerciseDto exerciseDto)
         {
             ISubscriber email = _emailRepository.GetEmail();
 
@@ -76,7 +76,7 @@ namespace Application.Exercises
 
             foreach (var subscriber in _subscribers)
             {
-                subscriber.Update(exerciseDto);
+                await subscriber.Update(exerciseDto);
             }
         }
 

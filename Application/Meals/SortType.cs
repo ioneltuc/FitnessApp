@@ -2,6 +2,7 @@
 {
     public enum SortType
     {
+        None,
         ByNameAsc,
         ByNameDesc,
         ByCaloriesAsc,

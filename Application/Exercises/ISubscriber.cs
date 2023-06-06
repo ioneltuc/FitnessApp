@@ -4,6 +4,6 @@ namespace Application.Exercises
 {
     public interface ISubscriber
     {
-        void Update(ExerciseDto exerciseDto);
+        Task Update(ExerciseDto exerciseDto);
     }
 }
